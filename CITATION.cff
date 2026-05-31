@@ -31,10 +31,15 @@ authors:
     affiliation: "University of North Carolina at Chapel Hill"
 
 abstract: >
-  SHARD is a pipeline for aligning large language models toward safe, helpful
-  responses without blunt refusals. It rewrites harmful prompts into safety-aligned
-  alternatives using LLM-generated guidelines, then fine-tunes models via SFT and DPO
-  on resulting preference pairs. Evaluated across seven models on the LinguaSafe benchmark.
+  Large language models often struggle with sensitive prompts. They may refuse outright,
+  provide generic safety boilerplate, or fail to address the user's legitimate informational
+  needs that can be answered safely. We introduce SHARD, a self-reframing distillation method
+  to improve safe-helpfulness. It first rewrites sensitive prompts to surface benign intent
+  using philosophical guidelines, then reframes its original responses into safe, more helpful
+  ones, and finally fine-tunes the model on its self-reframed responses. Across DoNotAnswer
+  and the English subset of LinguaSafe, SHARD improves helpfulness for most model families
+  while preserving safety. It also remains competitive with distillation from a larger teacher
+  model, suggesting that models can internalize safe and helpful behavior elicited from their own.
 
 keywords:
   - "LLM safety"
