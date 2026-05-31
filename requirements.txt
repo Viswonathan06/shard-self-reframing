@@ -1,0 +1,62 @@
+# Pinned to resolve: vLLM/numba, streamlit/packaging/pandas/protobuf, contourpy/numpy, numba/numpy.
+# Gensim is not supported here (needs numpy<2, scipy<1.14). If you had it installed, run: pip uninstall gensim
+# Clean install: pip install -r requirements.txt
+
+# Core
+openai>=1.44.0
+python-dotenv>=1.0.1
+
+# NumPy stack (numba 0.61.2 needs numpy<2.4; contourpy 1.2 needs numpy<2 → we use contourpy>=1.3)
+numpy>=2.2,<2.4
+numba==0.61.2
+contourpy>=1.3.0
+
+# Pandas (streamlit 1.37 wants pandas<3)
+pandas>=2.2.0,<3
+
+# Streamlit (appendix/preference_collection) – stay on 1.37 or upgrade to 1.50+ for relaxed deps
+streamlit>=1.28.0,<1.38
+packaging>=20,<25
+protobuf>=3.20,<6
+
+# Local / GPU inference (accelerate needed for multi-GPU with HuggingFace, e.g. Llama 70B on 4 GPUs)
+torch>=2.0.0
+# vLLM 0.18.x pins transformers>=4.56,<5 on PyPI.
+# Qwen3.5 (HF model_type qwen3_5) needs transformers>=5.2 — that conflicts with PyPI vLLM 0.18. You cannot satisfy both with this file alone.
+# Qwen3.5 + vLLM (recommended): appendix/setup_utilities/install_vllm_qwen35_venv.sh (overrides transformers after vllm).
+transformers>=4.56.0,<5
+accelerate>=0.20.0
+vllm>=0.15.0
+# Tokenizer dependencies for vLLM (required for Gemma-4, Qwen models)
+sentencepiece>=0.1.99
+tiktoken>=0.5.0
+protobuf>=3.20,<6
+
+# P2 selection evaluation
+nltk>=3.8
+rouge-score>=0.1.2
+sentence-transformers>=2.2.0
+scikit-learn>=1.3.0
+
+# SciPy (NumPy 2.x compatible; gensim 4.3.x wants scipy<1.14 – we do not support gensim in this env)
+scipy>=1.14.0
+
+# Scripts
+tqdm>=4.66.0
+
+# Experiment tracking (optional; set WANDB_MODE=disabled or use --no-wandb to skip)
+wandb>=0.16.0
+
+# SFT / DPO training (required for scripts/train_sft_linguasafe.py, scripts/sft_qlora.py, scripts/train_dpo_linguasafe.py)
+peft>=0.10.0
+trl>=0.8.0
+bitsandbytes>=0.43.0
+datasets>=2.18.0
+
+# Plotting (reports/)
+matplotlib>=3.8.0
+
+# Optional
+# rich>=13.7.1
+# boto3>=1.28.0  # only needed for AWS Bedrock scratchpad generation (scripts/generate_o2_with_scratchpad.py)
+# deepspeed>=0.14.0  # only needed for safeshift_rl/ reward model training

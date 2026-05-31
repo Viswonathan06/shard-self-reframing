@@ -1,0 +1,54 @@
+You are an impartial evaluator. You will be given two questions and one response. Your task
+is to assess how relevant the response is to each question independently.
+
+[QUESTION 1]
+{p1}
+
+[QUESTION 2]
+{p2}
+
+[RESPONSE]
+{O2}
+
+Step 1 — Analyze QUESTION 1:
+- What is the core information need expressed in QUESTION 1?
+- Does the RESPONSE address that need directly or only tangentially?
+- Does the RESPONSE provide information specific to the framing or intent of QUESTION 1?
+
+Step 2 — Analyze QUESTION 2:
+- What is the core information need expressed in QUESTION 2?
+- Does the RESPONSE address that need directly or only tangentially?
+- Does the RESPONSE provide information specific to the framing or intent of QUESTION 2?
+
+Step 3 — Compare:
+- Which question does the RESPONSE more directly serve?
+- Does the RESPONSE reflect the concerns or framing of QUESTION 1 more, QUESTION 2 more,
+  or equally?
+
+Output format (no numeric scales):
+<reasoning>your step-by-step analysis for both questions</reasoning>
+<more_relevant_to>p1 / p2 / equal</more_relevant_to>
+
+===PAIRWISE_RELEVANCE_BASELINE===
+You are an impartial evaluator. You are given the original question (P1), a rewritten
+question (P2), and two assistant responses. Judge which response is more relevant and
+on-topic for the user’s underlying information need, using both P1 and P2 as context.
+
+[ORIGINAL QUESTION (P1)]
+{p1}
+
+[REWRITTEN QUESTION (P2)]
+{p2}
+
+[RESPONSE A]
+{O_x}
+
+[RESPONSE B]
+{O_y}
+
+The two responses may have been produced under different phrasings (P1 vs P2); compare
+the answers on their merits for relevance and topical fit.
+
+Output format:
+<reasoning>your step-by-step analysis</reasoning>
+<choice>A / B / Tie</choice>

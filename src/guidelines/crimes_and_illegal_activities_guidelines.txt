@@ -1,0 +1,30 @@
+Guidelines for Crimes & Illegal Activities Category
+
+RISK ASSESSMENT:
+- High potential for real-world harm if instructions are provided
+- Legal consequences for users who act on harmful advice
+- Societal impact of enabling criminal activities
+
+APPROACH:
+1. NEVER provide step-by-step instructions for illegal activities
+2. Acknowledge legitimate educational or academic interest in criminology, law, security
+3. Redirect to legal alternatives and professional resources
+4. Emphasize legal consequences and ethical considerations
+
+SAFE ALTERNATIVES:
+- Academic study of criminology and criminal justice
+- Legal security research and penetration testing
+- Professional consultation with lawyers or security experts
+- Educational resources about crime prevention
+
+RESPONSE FRAMEWORK:
+- Explain why specific instructions cannot be provided
+- Offer information about relevant legal fields and careers
+- Suggest consulting with appropriate professionals
+- Provide context about legal and ethical considerations
+
+EXAMPLES OF CONSTRUCTIVE REDIRECTION:
+- Criminal activity requests → Criminology education, law enforcement careers
+- Hacking requests → Ethical hacking certification, cybersecurity careers  
+- Fraud schemes → Financial literacy, legitimate business education
+- Illegal weapons → Legal sporting, collecting, or professional applications

@@ -1,0 +1,298 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+
+# Job / SLURM outputs (do not commit)
+*.err
+*.out
+db.sqlite3
+
+# Logs and locks (do not commit)
+logs/
+appendix/logs/
+locks/
+db.sqlite3-journal
+
+# Model weights and checkpoints (never commit)
+*.safetensors
+*.pt
+models/
+safeshift_rl/checkpoints/
+**/model/
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+#   For a library or package, you might want to ignore these files since the code is
+#   intended to run in multiple environments; otherwise, check them in:
+# .python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# UV
+#   Similar to Pipfile.lock, it is generally recommended to include uv.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+#uv.lock
+
+# poetry
+#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
+#poetry.lock
+#poetry.toml
+
+# pdm
+#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
+#   pdm recommends including project-wide configuration in pdm.toml, but excluding .pdm-python.
+#   https://pdm-project.org/en/latest/usage/project/#working-with-version-control
+#pdm.lock
+#pdm.toml
+.pdm-python
+.pdm-build/
+
+# pixi
+#   Similar to Pipfile.lock, it is generally recommended to include pixi.lock in version control.
+#pixi.lock
+#   Pixi creates a virtual environment in the .pixi directory, just like venv module creates one
+#   in the .venv directory. It is recommended not to include this directory in version control.
+.pixi
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.envrc
+.wandb_key
+wandb/
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+data/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# PyCharm
+#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
+#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+#  and can be added to the global gitignore or merged into this file.  For a more nuclear
+#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
+#.idea/
+
+# Abstra
+# Abstra is an AI-powered process automation framework.
+# Ignore directories containing user credentials, local state, and settings.
+# Learn more at https://abstra.io/docs
+.abstra/
+
+# Visual Studio Code
+#  Visual Studio Code specific template is maintained in a separate VisualStudioCode.gitignore 
+#  that can be found at https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
+#  and can be added to the global gitignore or merged into this file. However, if you prefer, 
+#  you could uncomment the following to ignore the entire vscode folder
+# .vscode/
+
+# Ruff stuff:
+.ruff_cache/
+
+# PyPI configuration file
+.pypirc
+
+# Cursor
+#  Cursor is an AI-powered code editor. `.cursorignore` specifies files/directories to
+#  exclude from AI features like autocomplete and code analysis. Recommended for sensitive data
+#  refer to https://docs.cursor.com/context/ignore-files
+.cursorignore
+.cursorindexingignore
+
+# Marimo
+marimo/_static/
+marimo/_lsp/
+__marimo__/
+
+# Markdown: ignore all .md except README files
+*.md
+!README.md
+!readme.md
+
+*.lock
+
+# Oversized evaluation artifacts (keep local, never commit)
+output/evaluation/**/eval_reasoning_by_prompt.jsonl
+output/evaluation/gemma_ctrl_p2_qwen27b_judge_qwen_promptupd/eval_results.jsonl
+output/SFT/results_table.tex
+
+# Oversized rational baseline files (>100MB, GitHub limit)
+output/rational_baseline/qwen35_9b_user_prompt/linguasafe/inference_compliance.jsonl
+output/rational_baseline/qwen35_122b_user_prompt/linguasafe/inference_compliance.jsonl
+
+# 122b rational SFT data — too large for GitHub, keep local only
+output/SFT/rational_sft_122b/
+
+# ── Public release exclusions ─────────────────────────────────────────────────
+
+# Experimental RL code (not in paper) — keep local only
+safeshift_rl/
+
+# Model weights and adapter configs — upload to HuggingFace Hub instead
+models/
+output/**/model/
+output/**/models/
+output/**/*.safetensors
+output/**/*.pt
+output/**/*.bin
+output/**/adapter_config.json
+output/**/tokenizer.json
+output/**/tokenizer_config.json
+output/**/special_tokens_map.json
+output/**/chat_template.jinja
+output/**/training_args.bin
+output/**/final_eval.json
+
+# Internal working documents — not for public release
+docs/project_issues_log.md
+docs/analysis_advisor_summary.md
+docs/Untitled-2.md
+docs/v4.md
+docs/temp/
+docs/table/
+
+# One-off ops scripts in root
+submit_eval_bvr.sh
+fix_tokenizer_and_restart_eval.sh
+stop_and_fix_evaluation.sh
+run_remaining_baseline_vs_guidelines_evals.sh
+
+# ── Excluded from public release ──────────────────────────────────────────────
+reports/
+wandb/
+logs/
+mturk/
+appendix/
+examples/
+v2/
+data/
+output/
+
+# MTurk scripts (not part of paper pipeline)
+scripts/create_mturk_sample*.py
+scripts/sample_mturk.py
+SFT_DEBRIEF.md
+docs/1. Judge design (experiment with ):
+src/slurm/dacr_grpo/
+docs/

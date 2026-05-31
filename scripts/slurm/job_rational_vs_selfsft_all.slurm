@@ -1,0 +1,103 @@
+#!/usr/bin/bash
+# Judge: rational_sft vs self_model for all models except qwen35_9b and llama70b.
+# Direct head-to-head: RationalSFT output vs SelfSFT output on identical test prompts.
+# Models: llama8b, mistral24b, qwen35_27b, phi4, mistral7b
+#
+# Usage:
+#   sbatch scripts/slurm/job_rational_vs_selfsft_all.slurm
+
+#SBATCH -n 1
+#SBATCH --cpus-per-task=16
+#SBATCH -p a6000
+#SBATCH --qos=gpu_access
+#SBATCH --gres=gpu:4
+#SBATCH --exclude=gpu1,gpu3
+#SBATCH --time=12:00:00
+#SBATCH --job-name=rational_vs_selfsft
+#SBATCH --output=$PROJECT_ROOT/logs/rational_vs_selfsft_%j.out
+#SBATCH --error=$PROJECT_ROOT/logs/rational_vs_selfsft_%j.err
+
+set -euo pipefail
+
+ROOT="$PROJECT_ROOT"
+cd "$ROOT"
+mkdir -p logs
+
+PYTHON="$CONDA_PREFIX/envs/vllm-serve/bin/python"
+source ~/.bashrc 2>/dev/null || true
+export PYTHONPATH="${PYTHONPATH:-}:${ROOT}"
+export PYTHONUNBUFFERED=1
+export HF_HOME="${HF_HOME:-$HOME/.cache/huggingface}"
+export HF_HUB_DISABLE_XET=1
+export VLLM_USE_V1=0
+export VLLM_TRUST_REMOTE_CODE=1
+
+echo "=== JOB START ==="
+echo "Host:     $(hostname)"
+echo "Date:     $(date)"
+echo "Job ID:   ${SLURM_JOB_ID:-unknown}"
+echo "CUDA_VISIBLE_DEVICES: ${CUDA_VISIBLE_DEVICES:-<unset>}"
+echo "=== END DIAGNOSTICS ==="
+
+_GEMMA4_BASE="$HF_HOME/models--google--gemma-4-31B-it/snapshots"
+GEMMA4_PATH=$(find "$_GEMMA4_BASE" -maxdepth 1 -mindepth 1 -type d 2>/dev/null | sort -r | head -1)
+[[ -f "$GEMMA4_PATH/config.json" ]] || { echo "ERROR: Gemma-4 not found"; exit 1; }
+echo "Using Gemma-4 at: $GEMMA4_PATH"
+
+_SLURM_CUDA_DEVICES="${CUDA_VISIBLE_DEVICES:-}"
+source scripts/shell/setup_gemma4_vllm_env.sh 2>/dev/null || true
+[[ -n "$_SLURM_CUDA_DEVICES" ]] && export CUDA_VISIBLE_DEVICES="$_SLURM_CUDA_DEVICES"
+
+JUDGE_TP=$(echo "$CUDA_VISIBLE_DEVICES" | tr ',' '\n' | grep -c . || echo 0)
+_tp=1; for _p2 in 2 4 8; do (( _p2 <= JUDGE_TP )) && _tp=$_p2; done; JUDGE_TP=$_tp
+export VLLM_TENSOR_PARALLEL_SIZE=$JUDGE_TP
+export VLLM_GPU_MEMORY_UTILIZATION=0.75
+export VLLM_MAX_MODEL_LEN=16384
+export VLLM_MAX_NUM_BATCHED_TOKENS=16384
+export VLLM_ENFORCE_EAGER=0
+
+echo "Judge TP: $JUDGE_TP"
+nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
+echo ""
+
+run_judge() {
+    local model="$1"
+    local rs_infer="$ROOT/output/SFT/rational_sft/${model}/inference/${model}.jsonl"
+    local sm_infer="$ROOT/output/SFT/self_model/${model}/inference/${model}.jsonl"
+    local out_dir="$ROOT/output/SFT/rational_sft/${model}/judge/vs_selfsft"
+    local tag="${model}_rational_vs_selfsft"
+
+    echo ">>> [$model] rational_sft vs self_model"
+    [[ -f "$rs_infer" ]] || { echo "  ERROR: missing $rs_infer"; return 1; }
+    [[ -f "$sm_infer" ]] || { echo "  ERROR: missing $sm_infer"; return 1; }
+
+    "$PYTHON" scripts/judge_sft_vs_baseline_gemma4.py \
+        --sft-responses   "$rs_infer" \
+        --baseline        "$sm_infer" \
+        --output-dir      "$out_dir" \
+        --judge-model     "$GEMMA4_PATH" \
+        --model-tag       "$tag" \
+        --sft-label       "RationalSFT" \
+        --baseline-label  "SelfSFT" \
+        --batch-size      8 \
+        --max-new-tokens  512 \
+        --temperature     0.0
+
+    local out_file="$out_dir/sft_vs_baseline_${tag}.jsonl"
+    echo ">>> [$model] Done — $(wc -l < "$out_file") rows -> $out_dir"
+    echo ""
+}
+
+run_judge "llama8b"
+sleep 10
+run_judge "mistral24b"
+sleep 10
+run_judge "qwen35_27b"
+sleep 10
+run_judge "phi4"
+sleep 10
+run_judge "mistral7b"
+
+echo "========================================================"
+echo "All rational_sft vs self_model judges complete at: $(date)"
+echo "========================================================"

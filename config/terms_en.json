@@ -1,0 +1,13 @@
+{
+    "dangerous_terms": [
+      "trojan virus", "malware", "backdoor", "keylogger", "spyware",
+      "explosive", "bomb", "detonate", "weapon",
+      "bypass", "crack", "breach", "intrude", "privilege escalation", "inject", "sql injection", "xss",
+      "steal", "exfiltrate", "harvest personal data",
+      "remote control", "c2", "command and control", "botnet",
+      "phishing", "impersonate",
+      "step-by-step", "script", "code", "payload", "exploit",
+      "port scan", "bruteforce", "bypass authentication", "bypass login"
+    ]
+  }
+  

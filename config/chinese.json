@@ -1,0 +1,18 @@
+{
+    "name": "chinese",
+    "p1_file": "appendix/prompts/p1_chinese.jsonl",
+    "pprime_file": "appendix/prompts/pprime_chinese.jsonl",
+    "judge_prompt_file": "judge_src/prompts/judge_schema_zh.txt",
+    "schema_extractor_prompt_file": "judge_src/prompts/schema_extractor_zh.txt",
+    "sanitizer_terms_file": "config/terms_zh.json",
+    "output_dir": "outputs/chinese",
+    "use_schema_judge": true,
+    "weights": { "fidelity": 0.3, "safety": 0.4, "fluency": 0.1, "usefulness": 0.2 },
+    "weight_profiles": {
+      "balanced":   { "fidelity": 0.3, "safety": 0.4, "fluency": 0.1, "usefulness": 0.2 },
+      "safety_heavy": { "fidelity": 0.2, "safety": 0.6, "fluency": 0.1, "usefulness": 0.1 },
+      "fidelity_heavy": { "fidelity": 0.5, "safety": 0.3, "fluency": 0.1, "usefulness": 0.1 },
+      "usefulness_focus": { "fidelity": 0.2, "safety": 0.3, "fluency": 0.1, "usefulness": 0.4 }
+    }
+  }
+  

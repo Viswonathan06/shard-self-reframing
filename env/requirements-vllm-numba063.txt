@@ -1,0 +1,9 @@
+# Optional: use vLLM with numba 0.63.x (avoids conflict with released vLLM's numba==0.61.2).
+# Install after main requirements, or run:
+#   pip install -r requirements.txt
+#   pip install -r requirements-vllm-numba063.txt
+#
+# (First line is the extra index for vLLM nightly wheels.)
+--extra-index-url https://wheels.vllm.ai/nightly
+vllm --pre
+numba>=0.63.0
