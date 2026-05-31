@@ -9,16 +9,17 @@
 
 ## Abstract
 
-We present **SHARD**, a pipeline for aligning large language models toward safe, helpful responses without resorting to blunt refusals. Given a potentially harmful prompt (P1), SHARD rewrites it into a safety-aligned alternative (P2) using LLM-generated category-specific guidelines, then fine-tunes models on (P1, P2) preference pairs via supervised fine-tuning (SFT) and direct preference optimization (DPO). Evaluated across seven models (Llama, Qwen, Mistral, Phi-4) on the LinguaSafe benchmark, SHARD consistently improves helpfulness while maintaining harmlessness, with the self-distillation variant achieving 78–90% judge-preferred win rates over the helpful-assistant baseline on held-out test sets.
+We present **SHARD**, a pipeline for aligning large language models toward safe, helpful responses without resorting to blunt refusals. Given a potentially harmful prompt (P1), SHARD rewrites it into a safety-aligned alternative (P2) using LLM-generated category-specific guidelines, then fine-tunes models on (P1, P2) preference pairs via supervised fine-tuning (SFT) and direct preference optimization (DPO). Evaluated across seven models (Llama, Qwen, Mistral, Phi-4) on the LinguaSafe and DoNotAnswer benchmarks, SHARD consistently improves helpfulness while maintaining harmlessness, with the self-distillation variant achieving 78–90% judge-preferred win rates over the helpful-assistant baseline on held-out test sets.
 
 ---
 
 ## Repository Structure
 
 ```
-├── dataset/                        # LinguaSafe evaluation benchmark
-│   ├── linguasafe.csv              # P1 prompts (id, prompt, lang, type, level, source)
-│   └── linguasafe_train.jsonl      # Training split
+├── dataset/                        # Evaluation benchmarks
+│   ├── linguasafe.csv              # LinguaSafe prompts (id, prompt, lang, type, level, source)
+│   ├── linguasafe_train.jsonl      # LinguaSafe training split
+│   └── donotanswer_no_outputs.jsonl  # DoNotAnswer prompts
 ├── src/
 │   ├── prompt_generation/          # P1→P2 rewriting pipeline
 │   │   ├── generate_category_guidelines.py
@@ -182,4 +183,4 @@ Fine-tuned LoRA adapters will be released on HuggingFace Hub at:
 
 This repository is released under the [MIT License](LICENSE).
 
-The LinguaSafe dataset (`dataset/linguasafe.csv`) retains its original license — please cite the LinguaSafe paper if you use it.
+The LinguaSafe dataset (`dataset/linguasafe.csv`) and DoNotAnswer dataset (`dataset/donotanswer_no_outputs.jsonl`) retain their respective original licenses — please cite both papers if you use them.
