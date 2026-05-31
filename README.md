@@ -165,20 +165,6 @@ Fine-tuned LoRA adapters will be released on HuggingFace Hub at:
 
 ---
 
-## Citation
-
-```bibtex
-@article{manoranjan2025shard,
-  title     = {{SHARD}: Safe and Helpful Alignment via Self-Reframing Distillation},
-  author    = {Manoranjan, Viswonathan and Gupta, Amogh and Vijjini, Anvesh Rao and Hofweber, Thomas and Chaturvedi, Snigdha},
-  journal   = {arXiv preprint},
-  year      = {2025},
-  url       = {https://arxiv.org/abs/XXXX.XXXXX}
-}
-```
-
----
-
 ## License
 
 This repository is released under the [MIT License](LICENSE).
