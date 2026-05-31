@@ -51,10 +51,19 @@ Dataset files are not included in this repository. Download them and place them 
 
 ### LinguaSafe
 
+Paper repository: https://github.com/zy-ning/LinguaSafe
+
 ```bash
-# Download from the LinguaSafe repository
-git clone https://github.com/adobe-research/LinguaSafe
-cp LinguaSafe/data/linguasafe.csv dataset/linguasafe.csv
+pip install datasets
+python - <<'EOF'
+from datasets import load_dataset
+import pandas as pd, pathlib
+
+pathlib.Path("dataset").mkdir(exist_ok=True)
+ds = load_dataset("zhiyuan-ning/linguasafe", split="train")
+ds.to_pandas().to_csv("dataset/linguasafe.csv", index=False)
+print("Saved to dataset/linguasafe.csv")
+EOF
 ```
 
 Expected file: `dataset/linguasafe.csv`  
