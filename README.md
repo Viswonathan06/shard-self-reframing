@@ -9,7 +9,9 @@
 
 ## Abstract
 
-We present **SHARD**, a pipeline for aligning large language models toward safe, helpful responses without resorting to blunt refusals. Given a potentially harmful prompt (P1), SHARD rewrites it into a safety-aligned alternative (P2) using LLM-generated category-specific guidelines, then fine-tunes models on (P1, P2) preference pairs via supervised fine-tuning (SFT) and direct preference optimization (DPO). Evaluated across seven models (Llama, Qwen, Mistral, Phi-4) on the LinguaSafe and DoNotAnswer benchmarks, SHARD consistently improves helpfulness while maintaining harmlessness, with the self-distillation variant achieving 78–90% judge-preferred win rates over the helpful-assistant baseline on held-out test sets.
+Large language models often struggle with sensitive prompts. They may refuse outright, provide generic safety boilerplate, or fail to address the user's legitimate informational needs that can be answered safely. We introduce **SHARD**, a self-reframing distillation method to improve safe-helpfulness. It first rewrites sensitive prompts to surface benign intent using philosophical guidelines, then reframes its original responses into safe, more helpful ones, and finally fine-tunes the model on its self-reframed responses. Across DoNotAnswer and the English subset of LinguaSafe, SHARD improves helpfulness for most model families while preserving safety. It also remains competitive with distillation from a larger teacher model, suggesting that models can internalize safe and helpful behavior elicited from their own.
+
+> ⚠️ **Warning:** This paper contains content that may be offensive or harmful.
 
 ---
 
