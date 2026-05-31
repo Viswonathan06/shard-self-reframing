@@ -18,10 +18,7 @@ Large language models often struggle with sensitive prompts. They may refuse out
 ## Repository Structure
 
 ```
-├── dataset/                        # Evaluation benchmarks
-│   ├── linguasafe.csv              # LinguaSafe prompts (id, prompt, lang, type, level, source)
-│   ├── linguasafe_train.jsonl      # LinguaSafe training split
-│   └── donotanswer_no_outputs.jsonl  # DoNotAnswer prompts
+├── dataset/                        # Evaluation benchmarks (download separately — see below)
 ├── src/
 │   ├── prompt_generation/          # P1→P2 rewriting pipeline
 │   │   ├── generate_category_guidelines.py
@@ -45,6 +42,42 @@ Large language models often struggle with sensitive prompts. They may refuse out
 ├── CITATION.cff
 └── LICENSE
 ```
+
+---
+
+## Datasets
+
+Dataset files are not included in this repository. Download them and place them in the `dataset/` directory as shown below.
+
+### LinguaSafe
+
+```bash
+# Download from the LinguaSafe repository
+git clone https://github.com/adobe-research/LinguaSafe
+cp LinguaSafe/data/linguasafe.csv dataset/linguasafe.csv
+```
+
+Expected file: `dataset/linguasafe.csv`  
+Columns: `id`, `prompt`, `lang`, `type`, `subtype`, `level`, `source`
+
+### DoNotAnswer
+
+```bash
+pip install datasets
+python - <<'EOF'
+from datasets import load_dataset
+import json, pathlib
+
+pathlib.Path("dataset").mkdir(exist_ok=True)
+ds = load_dataset("LibrAI/do-not-answer", split="train")
+with open("dataset/donotanswer_no_outputs.jsonl", "w") as f:
+    for row in ds:
+        f.write(json.dumps(row) + "\n")
+print("Saved to dataset/donotanswer_no_outputs.jsonl")
+EOF
+```
+
+Expected file: `dataset/donotanswer_no_outputs.jsonl`
 
 ---
 
@@ -171,4 +204,4 @@ Fine-tuned LoRA adapters will be released on HuggingFace Hub at:
 
 This repository is released under the [MIT License](LICENSE).
 
-The LinguaSafe dataset (`dataset/linguasafe.csv`) and DoNotAnswer dataset (`dataset/donotanswer_no_outputs.jsonl`) retain their respective original licenses — please cite both papers if you use them.
+The LinguaSafe and DoNotAnswer datasets retain their respective original licenses — please cite both papers if you use them.
