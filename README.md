@@ -1,6 +1,6 @@
 # SHARD: Safe and Helpful Alignment via Self-Reframing Distillation
 
-> **arXiv:** [Link coming soon]  
+> **arXiv:** [2606.15517](https://arxiv.org/abs/2606.15517)
 > **Authors:** Viswonathan Manoranjan\*, Amogh Gupta\*, Anvesh Rao Vijjini, Thomas Hofweber, Snigdha Chaturvedi  
 > **Institution:** University of North Carolina at Chapel Hill  
 > \* Equal contribution
@@ -206,6 +206,22 @@ MODEL=qwen35_9b sbatch scripts/slurm/job_comparison_pipeline.slurm
 
 Fine-tuned LoRA adapters will be released on HuggingFace Hub at:  
 `https://huggingface.co/Viswonathan06/SHARD-adapters` *(coming soon)*
+
+---
+
+## Citation
+
+If you find our work helpful, please cite our paper using the following BibTeX:
+
+```bibtex
+@article{manoranjan2026shard,
+  title   = {SHARD: Safe and Helpful Alignment via Self-Reframing Distillation},
+  author  = {Manoranjan, Viswonathan and Gupta, Amogh and Vijjini, Anvesh Rao and Hofweber, Thomas and Chaturvedi, Snigdha},
+  journal = {arXiv preprint arXiv:2606.15517},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/2606.15517}
+}
+```
 
 ---
 
