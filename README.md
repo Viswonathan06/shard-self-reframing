@@ -1,6 +1,6 @@
 # SHARD: Safe and Helpful Alignment via Self-Reframing Distillation
 
-> **arXiv:** [2606.15517](https://arxiv.org/abs/2606.15517)
+> **arXiv:** [2606.15517](https://arxiv.org/abs/2606.15517)  
 > **Authors:** Viswonathan Manoranjan\*, Amogh Gupta\*, Anvesh Rao Vijjini, Thomas Hofweber, Snigdha Chaturvedi  
 > **Institution:** University of North Carolina at Chapel Hill  
 > \* Equal contribution
